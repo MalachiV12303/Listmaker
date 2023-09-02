@@ -2,7 +2,10 @@ package com.raywenderlich.listmaker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.raywenderlich.listmaker.ui.main.MainFragment
+
 
 class MainActivity : AppCompatActivity() {
 
