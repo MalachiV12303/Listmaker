@@ -1,14 +1,14 @@
 package com.raywenderlich.listmaker.ui.main
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.raywenderlich.listmaker.R
 import com.raywenderlich.listmaker.databinding.MainFragmentBinding
+
 class MainFragment : Fragment() {
     companion object {
         fun newInstance() = MainFragment()
@@ -21,8 +21,7 @@ class MainFragment : Fragment() {
             false)
         binding.listsRecyclerview.layoutManager =
             LinearLayoutManager(requireContext())
-        binding.listsRecyclerview.adapter =
-            ListSelectionRecyclerViewAdapter()
+
         return binding.root
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
