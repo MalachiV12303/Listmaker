@@ -15,8 +15,7 @@ class MainFragment : Fragment() {
     }
     private lateinit var binding: MainFragmentBinding
     private lateinit var viewModel: MainViewModel
-    override fun onCreateView(inflater: LayoutInflater, container:
-    ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container,
             false)
         binding.listsRecyclerview.layoutManager =
@@ -27,7 +26,8 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity(), MainViewModelFactory(PreferenceManager.getDefaultSharedPreferences(requireActivity()))).get(MainViewModel::class.java)
-        val recyclerViewAdapter = ListSelectionRecyclerViewAdapter(viewModel.lists)
+        val recyclerViewAdapter =
+            ListSelectionRecyclerViewAdapter(viewModel.lists)
         binding.listsRecyclerview.adapter = recyclerViewAdapter
         viewModel.onListAdded = {
             recyclerViewAdapter.listsUpdated()

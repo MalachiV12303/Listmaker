@@ -21,11 +21,15 @@ class MainActivity : AppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment.newInstance()).commitNow()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, MainFragment.newInstance())
+                .commitNow()
         }
         binding.fabButton.setOnClickListener {
             showCreateListDialog()
+
         }
     }
     private fun showCreateListDialog() {
@@ -33,13 +37,14 @@ class MainActivity : AppCompatActivity() {
         val positiveButtonTitle = getString(R.string.create_list)
         val builder = AlertDialog.Builder(this)
         val listTitleEditText = EditText(this)
+        listTitleEditText.inputType = InputType.TYPE_CLASS_TEXT
+
+        builder.setTitle(dialogTitle)
+        builder.setView(listTitleEditText)
+
         builder.setPositiveButton(positiveButtonTitle) { dialog, _ -> dialog.dismiss()
             viewModel.saveList(TaskList(listTitleEditText.text.toString()))
         }
-        listTitleEditText.inputType = InputType.TYPE_CLASS_TEXT
-        builder.setTitle(dialogTitle)
-        builder.setView(listTitleEditText)
-        builder.setPositiveButton(positiveButtonTitle) {dialog, _ -> dialog.dismiss()}
         builder.create().show()
     }
 }
