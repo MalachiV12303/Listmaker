@@ -1,7 +1,11 @@
 package com.raywenderlich.listmaker.ui.detail.ui.listdetail
-
 import androidx.lifecycle.ViewModel
-
-class ListDetailViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+import com.raywenderlich.listmaker.TaskList
+class ListDetailViewModel() : ViewModel() {
+    lateinit var onTaskAdded: (() -> Unit)
+    lateinit var list: TaskList
+    fun addTask(task: String) {
+        list.tasks.add(task)
+        onTaskAdded.invoke()
+    }
 }
