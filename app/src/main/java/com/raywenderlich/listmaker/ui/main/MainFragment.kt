@@ -10,14 +10,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.raywenderlich.listmaker.TaskList
 import com.raywenderlich.listmaker.databinding.MainFragmentBinding
 
-class MainFragment(val clickListener: MainFragmentInteractionListener) : Fragment(), ListSelectionRecyclerViewAdapter.ListSelectionRecyclerViewClickListener {
+class MainFragment : Fragment(), ListSelectionRecyclerViewAdapter.ListSelectionRecyclerViewClickListener {
     interface MainFragmentInteractionListener {
         fun listItemTapped(list: TaskList)
     }
-    companion object {
-        fun newInstance(clickListener: MainFragmentInteractionListener) = MainFragment(clickListener)
-    }
+
+    lateinit var clickListener: MainFragmentInteractionListener
     private lateinit var binding: MainFragmentBinding
+
+    companion object {
+        fun newInstance() = MainFragment()
+    }
+
     private lateinit var viewModel: MainViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container,

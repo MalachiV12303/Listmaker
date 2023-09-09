@@ -4,12 +4,23 @@ import androidx.lifecycle.ViewModel
 import com.raywenderlich.listmaker.TaskList
 class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
     lateinit var onListAdded: (() -> Unit)
+
+    lateinit var onTaskAdded: (() -> Unit)
+    fun addTask(task: String) {
+        list.tasks.add(task)
+        onTaskAdded.invoke()
+    }
+
+    lateinit var list: TaskList
+
     val lists: MutableList<TaskList> by lazy {
         retrieveLists()
     }
+
     private fun retrieveLists(): MutableList<TaskList> {
         val sharedPreferencesContents = sharedPreferences.all
         val taskLists = ArrayList<TaskList>()
+
         for (taskList in sharedPreferencesContents) {
             val itemsHashSet = ArrayList(taskList.value as HashSet<String>)
             val list = TaskList(taskList.key, itemsHashSet)
